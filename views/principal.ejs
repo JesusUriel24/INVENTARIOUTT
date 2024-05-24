@@ -1,0 +1,23 @@
+<main class="contenedor contenedor-formularios">
+    <h1><%= nombrePagina %> </h1>
+
+    <form action="/principal" method="post" class="default-form">
+        <div class="campo">
+            <label>Carrera</label>
+            <input type="text" name="carrera" placeholder="Ingresa la especialidad del docente">
+        </div>
+
+        <div class="campo">
+            <label>Docente</label>
+            <input type="text" name="Docente" placeholder="Ingresa el nombre del docente">
+        </div>
+        
+
+        <div class="campo iniciar evaluacion">
+            <input type="submit" class="btn btn-verde" value="Siguiente">
+
+        </div>
+
+        <button onclick="window.location.href='/'" class="btn btn-rojo">Cerrar Sesión</button>
+</main>
+
