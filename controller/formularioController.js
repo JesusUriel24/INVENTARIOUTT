@@ -17,7 +17,7 @@ exports.formFormulario = async (req, res) => {
     });
 
     res.render('formulario', {
-        nombrePagina: 'Alumno-Docente',
+        nombrePagina: 'Inventario UTT',
         carrera,
         especialidades,
         docentesPorEspecialidadJSON: JSON.stringify(docentesPorEspecialidad)  // Convertir a JSON

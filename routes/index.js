@@ -10,6 +10,7 @@ const materiasController = require('../controller/materiasController');
 const especialidadesController = require('../controller/especialidadesController');
 
 
+
 module.exports = function(){
     router.get('/', homeController.home);
 
@@ -37,34 +38,19 @@ module.exports = function(){
          formularioController.guardarformulario,
          formularioController.procesarformulario);
   
-    // router.get('/iniciarSesion', (req,res) => {
-    //   res.render('iniciarSesion')
-    //});   
-    // formulario
-    //router.get('/formulario', usuariosController.formFormulario);
-
-    // VistaFinal de evaluacion docente, alumno-docente
     router.get('/homeEnd', homeEndController.homeEnd);
 
     //registro de carreras
     router.get('/carrera', carrerasController.visualizarCarreras);
     router.post('/carrera', carrerasController.guardarCarreras);
 
-    //registro de materias
+    
     router.get('/materias', materiasController.visualizarMaterias);
     router.post('/materias', materiasController.guardarMaterias);
 
-    //especialidades :(
+    
         router.get('/especialidades', especialidadesController.visualizarEspecialidades);
     router.post('/especialidades', especialidadesController.guardarEspecialidades);
-
-
     
-    
-
-
-
- 
-
     return router;
 }

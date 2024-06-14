@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
 const { v4: uuidv4 } = require('uuid');
+const { DataTypes } = require('sequelize');
 const Usuarios = require('./Usuarios');
 
 const Cuestionario = db.define('cuestionario', {
@@ -12,214 +13,69 @@ const Cuestionario = db.define('cuestionario', {
 
     },
 
-    especialidad: Sequelize.STRING(100),    
+    Inventario: Sequelize.STRING(100),    
     
-    carrera: {
+    dispositivo: {
         type: Sequelize.STRING(100),
         allowNull: false
     },
 
-    docente: {
+    sistemaOperativo: {
         type: Sequelize.STRING(100),
         allowNull: false
     },
 
-    materia: {
+    marca: {
         type: Sequelize.STRING(100),
         allowNull: false
     },
 
-    pregunta1: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
+    memoriaRam: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+
+    tarjeta: {
+        type: Sequelize.STRING(50),
+        allowNull: false
+    },
+
+    procesador: {
+        type: Sequelize.STRING(50),
+        allowNull: false
 
     },
 
-    pregunta2: {
-        type: Sequelize.INTEGER,
+
+    dd: {
+        type: DataTypes.ENUM('250GB', '500GB', '1TB'),
         allowNull: false,
         validate: {
-            min: 0,
-            max: 4
+            notNull: {
+                msg: 'El campo Disco Duro no puede ser nulo'
+            },
+            isIn: {
+                args: [['250GB', '500GB', '1TB']],
+                msg: 'El campo Disco Duro debe ser "250GB", "500GB" o "1TB"'
+            }
         }
-
     },
 
-    pregunta3: {
-        type: Sequelize.INTEGER,
+    funcional: {
+        type: DataTypes.ENUM('si', 'no'),
         allowNull: false,
         validate: {
-            min: 0,
-            max: 4
+            notNull: {
+                msg: 'El campo funcional no puede ser nulo'
+            },
+            isIn: {
+                args: [['si', 'no']],
+                msg: 'El campo funcional debe ser "si" o "no"'
+            }
         }
-
     },
 
-    pregunta4: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta5: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta6: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta7: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta8: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta9: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta10: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta11: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta12: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta13: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta14: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta15: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta16: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta17: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta18: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    pregunta19: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        validate: {
-            min: 0,
-            max: 4
-        }
-
-    },
-
-    comentario: {
+    descripcion: {
         type: Sequelize.STRING(200),
         allowNull: false,
         validate: {
@@ -228,7 +84,18 @@ const Cuestionario = db.define('cuestionario', {
             }
 
         }
+    },
+    
+    nombre: {
+        type: Sequelize.STRING(100),
+        allowNull: false
+    },
+
+    especialidad: {
+        type: Sequelize.STRING(100),
+        allowNull: false
     }
+    
 })
 
 Cuestionario.belongsTo(Usuarios);
